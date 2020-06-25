@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>MyExpenses</title>
+    <script src="./history1.js"></script>  
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <style>
+      body{
+        font-family: cursive,'Arial Narrow', Arial, sans-serif;
+        background-image: url("background1.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:cover;
+      }
+      .vl {
+    left: 16.3%;
+    border-left: 2px solid black;
+    height: 100%;
+    position: fixed;
+    /* top: 10; */
+        }
+    .width{
+      /* display: block; */
+      width: 200px;
+      margin: 15px 10px;
+      height: 45px;
+      padding: 5px;
+      background-color: rgb(0, 149, 179);
+      box-shadow: 4px 4px #c8baba;
+    }
+
+      .abc{
+        display:inline-flex;
+      }
+     .nav_img{
+        width: 40px;
+        padding: 0px;
+        margin-right: 4px;
+      }
+      .table{
+        /* display: flex; */
+        /* background-color:rgb(196, 219, 221); */
+        text-align: center;
+        background-color: rgb(187, 213, 255);
+        margin-top: 10px;
+        padding: 15px;
+        margin-left: 250px;
+        width: 700px;
+        border: 2px solid rgb(24, 24, 24);
+        border-radius: 15px;
+      }
+      .mytable{
+        /* border: 2px solid red; */
+        /* background-color: rgb(158, 158, 158); */
+        width: 700px;
+        margin: 30px auto;
+        padding: 10px;
+      }
+      .container{         
+        display: block;
+      }
+      .date_title{
+        /* border: 2px solid black; */
+        /* background-color: rgb(165, 162, 162); */
+        /* color: rgb(9, 116, 255); */
+        /* color: white; */
+        text-align: center;
+        display: block;
+
+      }
+      th{
+      text-align: center;
+    }
+    td{
+      /* background-color: rgb(156, 156, 156); */
+      text-align: center
+    }
+    </style>
+
+  
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <img class="nav_img" src="/money-bag.png" alt="icon">           
+        <a class="navbar-brand" href="#">MyExpenses</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="">History <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact_us.html">Contact us</a>
+            </li>
+        </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+        </div>
+    </nav>
+    <!-- vertical line -->
+      <div class="vl"></div>
+
+      <!-- Receiving input from Home.html -->
+      <!-- <script>
+        var mystr = localStorage.getItem("myValue");
+        var jsonObj = JSON.parse(localStorage.getItem('jsonObj')); 
+        console.log(jsonObj);
+        console.log(jsonObj.Amount);
+        console.log(jsonObj.date);        
+        </script> -->
+
+  <div class="abc">
+          <!-- 7-Date buttons -->
+    <div>
+      <button type="button" class="btn btn-secondary btn-lg width" id="btn0" onclick="table1()"></button>
+      <br>
+      <script>
+        myfunction(0);
+      </script>
+
+      <button type="button" class="btn btn-secondary btn-lg width" id="btn1" onclick="table2()"></button>
+      <br>
+      <script>
+        myfunction(1);
+      </script>
+
+      <button type="button" class="btn btn-secondary btn-lg width" id="btn2" onclick="table3()"></button>
+      <br>
+      <script>
+        myfunction(2);
+      </script>
+
+      <button type="button" class="btn btn-secondary btn-lg width" id="btn3" onclick="table4()"></button>
+      <br>
+      <script>
+        myfunction(3);
+      </script>
+
+      <button type="button" class="btn btn-secondary btn-lg width" id="btn4" onclick="table5()"></button>
+      <br>
+      <script>
+        myfunction(4);
+      </script>
+
+      <button type="button" class="btn btn-secondary btn-lg width" id="btn5" onclick="table6()"></button>
+      <br>
+      <script>
+        myfunction(5);
+      </script>
+
+      <button type="button" class="btn btn-secondary btn-lg width" id="btn6" onclick="table7()"></button>
+      <br>
+      <script>
+        myfunction(6);
+      </script>
+    </div>
+    
+
+    <div class="container">
+        <div id="table1" class="table" style="display: none;">
+        <h3 id="date1" class="date_title">date</h3>
+        <hr id="line1">
+        <table id="myTable1" class="mytable">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Discription</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td> 1</td>
+            <td> Milk 1 Ltr</td>
+            <td> 48</td>
+            <td>07:17:34 AM</td>
+          </tr>
+          <tr>
+            <td> 2</td>
+            <td> newspaper</td>
+            <td> 8</td>
+            <td> 07:29:25 AM</td>
+          </tr>
+          <tr>
+            <td> 3</td>
+            <td> Parking fee</td>
+            <td> 25</td>
+            <td>11:02:18 AM</td>
+          </tr>
+          <tr>
+            <td> 4</td>
+            <td> travelling</td>
+            <td> 60</td>
+            <td>3:32:48 PM</td>
+          </tr>
+          <tr>
+            <td> 5</td>
+            <td> light bill</td>
+            <td> 1180</td>
+            <td>07:26:42 PM</td>
+          </tr>
+          <tr>
+            <td> 6</td>
+            <td>Movie</td>
+            <td> 149</td>
+            <td>10:25:14 PM</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="table2" class="table"  style="display: none;">
+        <h3 id="date2" class="date_title">date</h3>
+        <hr>
+      <table id="myTable2" class="mytable">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Discription</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td> 1</td>
+            <td> Newspaper</td>
+            <td> 8</td>
+            <td>07:12:34 AM</td>
+          </tr>
+          <tr>
+            <td> 2</td>
+            <td> Milk 1 Ltr</td>
+            <td> 48</td>
+            <td>07:15:54 AM</td>
+          </tr>
+          <tr>
+            <td> 3</td>
+            <td>Vegetable</td>
+            <td> 55</td>
+            <td>09:15:54 AM</td>
+          </tr>
+          <tr>
+            <td> 4</td>
+            <td> Netflix subscription</td>
+            <td> 649</td>
+            <td>10:36:13 AM</td>
+          </tr>
+          <tr>
+            <td> 5</td>
+            <td> Parking fee</td>
+            <td>20</td>
+            <td>01:17:52 PM</td>
+          </tr>
+          <tr>
+            <td> 6</td>
+            <td>Bike servicing</td>
+            <td> 350</td>
+            <td>06:55:34 PM</td>
+          </tr>
+          </tbody>
+        </table>  
+      </div>          <!-- class table-->
+
+      <div id="table3" class="table" style="display: none;">
+        <h3 id="date3" class="date_title">date</h3>
+        <hr>
+      <table id="myTable3" class="mytable">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Discription</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td> 1</td>
+            <td> Milk</td>
+            <td> 48</td>
+            <td> 07:24:38 AM</td>
+          </tr>
+          <tr>
+            <td> 2</td>
+            <td> Light bulb</td>
+            <td> 399</td>
+            <td> 09:41:27 AM</td>
+          </tr>
+          <tr>
+            <td> 3</td>
+            <td>Chocolate</td>
+            <td> 49</td>
+            <td>11:15:34 AM</td>
+          </tr>
+          <tr>
+            <td> 4</td>
+            <td>Petrol</td>
+            <td> 100</td>
+            <td>11:45:14 AM</td>
+          </tr>
+          <tr>
+            <td> 5</td>
+            <td>train pass</td>
+            <td> 550</td>
+            <td>12:35:28 PM</td>
+          </tr>
+          <tr>
+            <td> 6</td>
+            <td>Phone recharge</td>
+            <td> 399</td>
+            <td>03:25:19 AM</td>
+          </tr>
+          </tbody>
+        </table>  
+      </div>          <!-- class table-->
+
+      <div id="table4" class="table"  style="display: none;">
+        <h3 id="date4" class="date_title">date</h3>
+        <hr id="line2" >
+      <table id="myTable4" class="mytable">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Discription</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> 1</td>
+              <td>milk</td>
+              <td> 48</td>
+              <td>07:28:40 AM</td>
+            </tr>
+            <tr>
+              <td> 2</td>
+              <td>Suger</td>
+              <td> 52</td>
+              <td>07:45:14 AM</td>
+            </tr>
+            <tr>
+              <td> 3</td>
+              <td>Travelling</td>
+              <td> 60</td>
+              <td>12:51:47 PM</td>
+            </tr>
+            <tr>
+              <td> 4</td>
+              <td>Vegetable</td>
+              <td> 48</td>
+              <td>06:42:10 PM</td>
+            </tr>
+            <tr>
+              <td> 5</td>
+              <td>Ice cream</td>
+              <td> 49</td>
+              <td>10:49:44 AM</td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>          <!-- class table-->
+
+      <div id="table5" class="table"  style="display: none;">
+        <h3 id="date5" class="date_title">date</h3>
+        <hr id="line2" >
+      <table id="myTable5" class="mytable">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Discription</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> 1</td>
+              <td>Newspaper</td>
+              <td> 8</td>
+              <td>07:42:39 AM</td>
+            </tr>
+          <tr>
+            <td> 2</td>
+            <td> Milk</td>
+            <td> 49</td>
+            <td> 08:01:20 AM</td>
+          </tr>
+          <tr>
+            <td> 3</td>
+            <td>Doctor Fee</td>
+            <td> 150</td>
+            <td>10:25:24 AM</td>
+          </tr>
+          <tr>
+            <td> 4</td>
+            <td>Medicines</td>
+            <td>39</td>
+            <td>10:27:14 AM</td>
+          </tr>
+          <tr>
+            <td> 5</td>
+            <td>Garbage bags</td>
+            <td> 110</td>
+            <td>07:25:54 PM</td>
+          </tr>
+          
+          </tbody>
+        </table>  
+      </div>          <!-- class table-->
+
+      <div id="table6" class="table"  style="display: none;">
+        <h3 id="date6" class="date_title">date</h3>
+        <hr id="line2" >
+      <table id="myTable6" class="mytable">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Discription</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> 1</td>
+              <td>Milk</td>
+              <td> 48</td>
+              <td>07:15:54 AM</td>
+            </tr>
+            <tr>
+              <td> 2</td>
+              <td>Petrol</td>
+              <td> 100</td>
+              <td>10:15:19 AM</td>
+            </tr>
+          <tr>
+            <td> 3</td>
+            <td> Parking fee</td>
+            <td> 25</td>
+            <td> 10:43:35 AM</td>
+          </tr>
+          <tr>
+            <td> 4</td>
+            <td>Socks</td>
+            <td> 99</td>
+            <td>07:16:14 PM</td>
+          </tr>
+          <tr>
+            <td> 5</td>
+            <td>Restaurant bill</td>
+            <td> 349</td>
+            <td>10:39:20 PM</td>
+          </tr>
+          </tbody>
+        </table>  
+      </div>          <!-- class table-->
+
+      <div id="table7" class="table"  style="display: none;">
+        <h3 id="date7" class="date_title">date</h3>
+        <hr id="line2" >
+      <table id="myTable7" class="mytable">
+          <thead>
+            <tr>
+              <th scope="col">Sr No.</th>
+              <th scope="col">Discription</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td> 1</td>
+            <td> Newspaper</td>
+            <td> 8</td>
+            <td> 07:38:50 AM</td>
+          </tr>
+          <tr>
+            <td> 2</td>
+            <td> Milk</td>
+            <td> 48</td>
+            <td> 07:40:02 AM</td>
+          </tr>
+          <tr>
+            <td> 3</td>
+            <td>Petrol</td>
+            <td> 100</td>
+            <td>10:45:14 AM</td>
+          </tr>
+          <tr>
+            <td> 4</td>
+            <td>Parking fee</td>
+            <td> 25</td>
+            <td>11:15:54 AM</td>
+          </tr>
+          <tr>
+            <td> 5</td>
+            <td>Vegetables</td>
+            <td> 62</td>
+            <td>07:30:29 AM</td>
+          </tr>
+          </tbody>
+        </table>  
+      </div>          <!-- class table-->
+
+    </div>         <!--class container  -->
+  </div>          <!-- class abc-->
+  
+    
+  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+
+  </body>
+    </html>
+
+
+    <!-- expenses
+      milk  --everyday
+      suger
+      chocolate
+      garbage bags
+      socks
+      light bulb
+      restaurant bill
+      train pass
+      ice cream
+      vegetable
+      petrol
+      newspapers  --everyday
+      phone recharge
+      doctor fee
+      medicines
+      netflix subscription
+      bike servicing 
+      parking fee --everyday
+      light bill
+      travelling --everyday
+      movie
+
+
+     -->
